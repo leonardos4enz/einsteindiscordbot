@@ -3,7 +3,26 @@ const { token } = process.env;
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const fs = require('fs');
 
-const client = new Client({ intents: GatewayIntentBits.Guilds });
+const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,                
+        GatewayIntentBits.GuildMembers,                   
+        GatewayIntentBits.GuildEmojisAndStickers,
+        GatewayIntentBits.GuildIntegrations,     
+        GatewayIntentBits.GuildWebhooks,         
+        GatewayIntentBits.GuildInvites,          
+        GatewayIntentBits.GuildVoiceStates,      
+        GatewayIntentBits.GuildPresences,        
+        GatewayIntentBits.GuildMessages,         
+        GatewayIntentBits.GuildMessageReactions, 
+        GatewayIntentBits.GuildMessageTyping,    
+        GatewayIntentBits.DirectMessages,        
+        GatewayIntentBits.DirectMessageReactions,
+        GatewayIntentBits.DirectMessageTyping,   
+        GatewayIntentBits.MessageContent,        
+        GatewayIntentBits.GuildScheduledEvents   
+    ]
+});
 client.commands = new Collection();
 client.commandsArray = [];
 
