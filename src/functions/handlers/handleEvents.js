@@ -5,14 +5,14 @@ const path = require('path');
 module.exports = (client) => {
     client.handleEvents = async () => {
         const eventFolders = fs.readdirSync(path.join(__dirname, '..', '..', 'events'));
-        console.log(eventFolders);
+        //console.log(eventFolders);
         for (const folder of eventFolders) {
-            console.log(folder);
+            //console.log(folder);
             const eventFiles = fs
                 .readdirSync(path.join(__dirname, '..', '..', 'events', folder))
                 .filter((file) => file.endsWith(".js"));
             
-            console.log(eventFiles);
+            //console.log(eventFiles);
             switch (folder) {
                 case "client":
                     for (const file of eventFiles) {

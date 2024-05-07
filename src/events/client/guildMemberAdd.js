@@ -9,10 +9,13 @@ module.exports = {
 
         const embed = new EmbedBuilder()
             .setTitle(`¡Bienvenido a ${member.guild.name}!`)
-            .setDescription(`${member} ¡Bienvenido! \nTu cuenta fue creada ${moment(member.user.createdTimestamp).fromNow()}, ¡Disfruta tu estancia!`)
+            .setDescription(`${member} ¡Gracias por unirte! \nTu cuenta fue creada ${moment(member.user.createdTimestamp).fromNow()}. Esperamos que disfrutes tu tiempo aquí.`)
             .setColor("Aqua")
             .setThumbnail(member.user.displayAvatarURL({ dynamic: true }))
-            .setFooter({ text: `ID: ${member.id}` })
+            .addFields(
+                { name: 'Número actual de miembros', value: `${member.guild.memberCount}`, inline: false }
+            )
+            .setFooter({ text: `ID del Miembro: ${member.id}` })
             .setTimestamp();
 
         // Encuentra el canal de bienvenida
@@ -21,8 +24,9 @@ module.exports = {
             console.log("No se encontró el canal de bienvenida.");
             return;
         }
-        
+
         // Enviar el embed al canal
         channel.send({ embeds: [embed] });
+
     }
 };
