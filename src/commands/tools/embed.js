@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
-const { createCanvas, loadImage } = require('canvas');
+const { createCanvas, registerFont } = require('canvas');
 
 const frasesEinstein = [
     "La imaginación es más importante que el conocimiento.",
@@ -28,17 +28,31 @@ module.exports = {
         const canvas = createCanvas(500, 250);
         const ctx = canvas.getContext('2d');
 
-        // Carga la imagen de fondo
-        const backgroundImage = await loadImage('assets/images/welcomeBackground2.jpg'); // Asegúrate de poner la ruta correcta de tu imagen
-        ctx.drawImage(backgroundImage, 0, 0, 500, 250);
+        // Dibuja un fondo que simula un pizarrón verde
+        ctx.fillStyle = '#3e7a47';  // Color verde pizarrón
+        ctx.fillRect(0, 0, 500, 250);
 
-        // Configura el color y el tipo de letra para el nombre del usuario
+        // Agrega un efecto de textura de pizarrón, si tienes una imagen de textura, puedes usarla aquí
+        //if (textureImage) {  // Suponiendo que has cargado una imagen de textura previamente
+        //    ctx.drawImage(textureImage, 0, 0, 500, 250);
+        //}
+
+        // Configura el color blanco y un estilo de letra que simula gis
         ctx.fillStyle = 'white';
-        ctx.font = '20px sans-serif';
+        ctx.font = 'bold 20px "Comic Sans MS", cursive, sans-serif'; // Fuente más informal como gis
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.fillText(member.displayName, 100, 100); // Dibuja el nombre del usuario centrado en el canvas
 
+        // Agrega un ligero efecto de sombra para simular el gis
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.5)';
+        ctx.shadowBlur = 3;
+        ctx.shadowOffsetX = 2;
+        ctx.shadowOffsetY = 2;
+
+        // Dibuja el nombre del usuario centrado en el canvas
+        ctx.fillText(member.displayName, 250, 125);
+
+        // Convertir el canvas a buffer y crear un adjunto
         const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: 'welcome_image.png' });
 
         const embed = new EmbedBuilder()
@@ -61,4 +75,6 @@ module.exports = {
             ephemeral: false
         });
     }
+    
 };
+const c = 'assets/images/welcomeBackground.png'

@@ -10,8 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mapbox/node-pre-gyp": "^1.0.11",
     "canvas": "^2.11.2",
     "discord.js": "^14.15.2",
-    "moment": "^2.30.1"
+    "moment": "^2.30.1",
+    "nan": "^2.19.0",
+    "simple-get": "^4.0.1"
   }
 }
