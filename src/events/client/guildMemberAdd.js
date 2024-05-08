@@ -150,6 +150,7 @@ module.exports = {
 
             const channel = client.channels.cache.get('1237595873014452225');
             channel.send({
+                contÑent: `<@${member.id}>!`,
                 embeds: [embed],
                 files: [attachment]
             });
