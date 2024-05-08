@@ -1,6 +1,9 @@
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const { createCanvas, registerFont } = require('canvas');
 
+// Registra la fuente correctamente
+registerFont('assets/fonts/CrimsonText-Regular.ttf', { family: 'Crimson-Text' });
+
 const frasesEinstein = [
     "La imaginación es más importante que el conocimiento.",
     "En medio de la dificultad yace la oportunidad.",
@@ -29,28 +32,46 @@ module.exports = {
         const ctx = canvas.getContext('2d');
 
         // Dibuja un fondo que simula un pizarrón verde
-        ctx.fillStyle = '#3e7a47';  // Color verde pizarrón
+        ctx.fillStyle = '#3e7a47';
         ctx.fillRect(0, 0, 500, 250);
 
-        // Agrega un efecto de textura de pizarrón, si tienes una imagen de textura, puedes usarla aquí
-        //if (textureImage) {  // Suponiendo que has cargado una imagen de textura previamente
-        //    ctx.drawImage(textureImage, 0, 0, 500, 250);
-        //}
-
-        // Configura el color blanco y un estilo de letra que simula gis
         ctx.fillStyle = 'white';
-        ctx.font = 'bold 20px "Comic Sans MS", cursive, sans-serif'; // Fuente más informal como gis
+        ctx.font = 'bold 20px "Crimson Text", sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
 
         // Agrega un ligero efecto de sombra para simular el gis
-        ctx.shadowColor = 'rgba(255, 255, 255, 0.5)';
-        ctx.shadowBlur = 3;
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.3)';
+        ctx.shadowBlur = 4;
         ctx.shadowOffsetX = 2;
         ctx.shadowOffsetY = 2;
 
-        // Dibuja el nombre del usuario centrado en el canvas
-        ctx.fillText(member.displayName, 250, 125);
+        // Dibuja el nombre del usuario que se une al servidor
+        ctx.fillText(`${member.displayName} #${guild.memberCount}`, 250, 30);
+
+        // Funciones matemáticas
+        const functions = [
+            (x) => 125 + 50 * Math.sin(0.05 * x),
+            (x) => 125 + 50 * Math.cos(0.05 * x)
+        ];
+
+        // Selecciona una función aleatoria
+        const randomIndex = Math.floor(Math.random() * functions.length);
+        const selectedFunction = functions[randomIndex];
+
+        // Dibuja la gráfica elegida
+        ctx.beginPath();
+        ctx.moveTo(0, selectedFunction(0)); // Comienza en el punto inicial adecuado
+        for (let x = 0; x < 500; x++) {
+            ctx.lineTo(x, selectedFunction(x));
+        }
+        ctx.strokeStyle = 'white';
+        ctx.stroke();
+
+        // Texto para indicar qué gráfica es
+        const graphNames = ["Seno", "Coseno", "Tangente", "Lineal"];
+        ctx.fillText(`Gráfica de ${graphNames[randomIndex]}`, 250, 230);
+
 
         // Convertir el canvas a buffer y crear un adjunto
         const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: 'welcome_image.png' });
