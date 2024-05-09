@@ -148,12 +148,27 @@ module.exports = {
             .setThumbnail(guild.iconURL({ dynamic: true }))
             .setTimestamp();
 
-            const channel = client.channels.cache.get('1237595873014452225');
+        const channel = client.channels.cache.get('1237595873014452225');
+
+        // Verifica si el miembro no es un bot antes de enviar el mensaje
+        if (!member.user.bot) {
+            // Envía el mensaje en el canal
             channel.send({
-                contÑent: `<@${member.id}>!`,
+                content: `<@${member.id}>!`,
                 embeds: [embed],
                 files: [attachment]
             });
+        
+            // Intenta enviar el mismo mensaje por mensaje privado
+            member.send({
+                content: `¡Hola ${member.displayName}!`,
+                embeds: [embed]
+            }).catch(error => {
+                console.error(`No se pudo enviar el mensaje privado a ${member.displayName}: ${error}`);
+                // Opcional: Informa en algún canal de logs o toma otra acción si el mensaje no pudo ser enviado.
+            });
+        }
+
 
     }
 };
