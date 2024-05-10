@@ -17,7 +17,7 @@ module.exports = {
                 await interaction.reply({
                     content: `Something went wrong while using this command... Try again or contact support.`,
                     ephemeral: true
-                })
+                }) 
             }
         }
     }
