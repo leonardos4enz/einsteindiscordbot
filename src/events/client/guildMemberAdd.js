@@ -36,7 +36,7 @@ module.exports = {
 
         // Dibuja una cuadrícula tenue
         const gridSize = 25; // Tamaño de las celdas de la cuadrícula
-        ctx.strokeStyle = 'rgba(128, 128, 128, 0.2)'; // Color gris tenue
+        ctx.strokeStyle = 'rgba(128, 128, 128, 0.4)'; // Color gris tenue
         ctx.lineWidth = 1; // Línea delgada
 
         // Líneas horizontales
@@ -140,7 +140,7 @@ module.exports = {
             .setDescription(
                 `¡Mucho gusto! ${member.displayName}, :wave:\n` +
                 `¡Te damos la bienvenida como miembro número **${guild.memberCount}** de nuestra comunidad de exploradores! :atom:\n\n` +
-                `**"${fraseAleatoria}"\n⎯ Albert Einstein**`
+                `**"${fraseAleatoria}"\n⎯ Albert Einstein** <:einstein:1239246148926050414>`
             )
             .setColor("#E4E4E4")
             .setImage('attachment://welcome_image.png')
