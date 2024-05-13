@@ -24,7 +24,7 @@ module.exports = {
         const suggestionEmbed = new EmbedBuilder()
             .setColor("#E4E4E4")
             .setTitle('Nueva sugerencia')
-            .setDescription(`:thought_balloon: ${suggestionText}`)
+            .setDescription(`❝${suggestionText}❞`)
             .setFooter({ text: `${interaction.user.tag}`, iconURL: interaction.user.displayAvatarURL() })
             .setTimestamp();
 
