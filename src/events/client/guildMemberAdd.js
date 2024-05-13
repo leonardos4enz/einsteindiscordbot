@@ -136,10 +136,10 @@ module.exports = {
         const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: 'welcome_image.png' });
 
         const embed = new EmbedBuilder()
-            .setTitle(`¡Bienvenido a ${guild.name}!`)
+            .setTitle(`<a:Atom:1239313296264400967> ¡Bienvenido a ${guild.name}! <a:Atom:1239313296264400967>`)
             .setDescription(
                 `¡Mucho gusto! ${member.displayName}, :wave:\n` +
-                `¡Te damos la bienvenida como miembro número **${guild.memberCount}** de nuestra comunidad de exploradores! :atom:\n\n` +
+                `¡Te damos la bienvenida como miembro número **${guild.memberCount}** de nuestra comunidad de exploradores! <a:Studying_books_read:1239313297526751283>\n\n` +
                 `**"${fraseAleatoria}"\n⎯ Albert Einstein** <:einstein:1239246148926050414>`
             )
             .setColor("#E4E4E4")
