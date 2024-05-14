@@ -1,36 +1,36 @@
-require('dotenv').config("")
-const { token } = process.env;
+require('dotenv').config();
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const fs = require('fs');
 
 const client = new Client({
     intents: [
-        GatewayIntentBits.Guilds,                
-        GatewayIntentBits.GuildMembers,                   
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildEmojisAndStickers,
-        GatewayIntentBits.GuildIntegrations,     
-        GatewayIntentBits.GuildWebhooks,         
-        GatewayIntentBits.GuildInvites,          
-        GatewayIntentBits.GuildVoiceStates,      
-        GatewayIntentBits.GuildPresences,        
-        GatewayIntentBits.GuildMessages,         
-        GatewayIntentBits.GuildMessageReactions, 
-        GatewayIntentBits.GuildMessageTyping,    
-        GatewayIntentBits.DirectMessages,        
+        GatewayIntentBits.GuildIntegrations,
+        GatewayIntentBits.GuildWebhooks,
+        GatewayIntentBits.GuildInvites,
+        GatewayIntentBits.GuildVoiceStates,
+        GatewayIntentBits.GuildPresences,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildMessageReactions,
+        GatewayIntentBits.GuildMessageTyping,
+        GatewayIntentBits.DirectMessages,
         GatewayIntentBits.DirectMessageReactions,
-        GatewayIntentBits.DirectMessageTyping,   
-        GatewayIntentBits.MessageContent,        
-        GatewayIntentBits.GuildScheduledEvents   
+        GatewayIntentBits.DirectMessageTyping,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildScheduledEvents
     ]
 });
+
 client.commands = new Collection();
 client.commandsArray = [];
 
 const functionFolders = fs.readdirSync(`./src/functions`);
-for(const folder of functionFolders){
+for (const folder of functionFolders) {
     const functionFiles = fs
         .readdirSync(`./src/functions/${folder}`)
-        .filter(file => file.endsWith('.js'));  
+        .filter(file => file.endsWith('.js'));
     for (const file of functionFiles)
         require(`./functions/${folder}/${file}`)(client);
 }
@@ -38,4 +38,4 @@ for(const folder of functionFolders){
 client.handleEvents();
 client.handleCommands();
 
-client.login(token);
+client.login(process.env.TOKEN);
