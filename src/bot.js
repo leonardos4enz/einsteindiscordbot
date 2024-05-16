@@ -39,3 +39,30 @@ client.handleEvents();
 client.handleCommands();
 
 client.login(process.env.TOKEN);
+
+// Listener para los botones
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isButton()) return;
+
+    const role1 = interaction.guild.roles.cache.find(role => role.name === 'Lego');
+    const role2 = interaction.guild.roles.cache.find(role => role.name === 'DaVinci');
+
+    if (interaction.customId === 'role1') {
+        if (interaction.member.roles.cache.has(role1.id)) {
+            await interaction.member.roles.remove(role1);
+            await interaction.reply({ content: `Te he quitado el rol **${role1.name}**.`, ephemeral: true });
+        } else {
+            await interaction.member.roles.add(role1);
+            await interaction.reply({ content: `Te he asignado el rol **${role1.name}**.`, ephemeral: true });
+        }
+    } else if (interaction.customId === 'role2') {
+        if (interaction.member.roles.cache.has(role2.id)) {
+            await interaction.member.roles.remove(role2);
+            await interaction.reply({ content: `Te he quitado el rol **${role2.name}**.`, ephemeral: true });
+        } else {
+            await interaction.member.roles.add(role2);
+            await interaction.reply({ content: `Te he asignado el rol **${role2.name}**.`, ephemeral: true });
+        }
+    }
+});
+
