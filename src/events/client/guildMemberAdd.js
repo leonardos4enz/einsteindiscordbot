@@ -136,11 +136,11 @@ module.exports = {
         const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: 'welcome_image.png' });
 
         const embed = new EmbedBuilder()
-            .setTitle(`<a:Atom:1239313296264400967> ¡Bienvenido a ${guild.name}! <a:Atom:1239313296264400967>`)
+            .setTitle(`¡Bienvenido a ${guild.name}!`)
             .setDescription(
                 `¡Mucho gusto! ${member.displayName}, :wave:\n` +
-                `¡Te damos la bienvenida como miembro número **${guild.memberCount}** de nuestra comunidad de exploradores! <a:Studying_books_read:1239313297526751283>\n\n` +
-                `**"${fraseAleatoria}"\n⎯ Albert Einstein** <:einstein:1239246148926050414>`
+                `¡Te damos la bienvenida como miembro número **${guild.memberCount}** de nuestra comunidad de mine exploradores!\n\n` +
+                `**"${fraseAleatoria}"\n⎯ Albert Einstein**`
             )
             .setColor("#E4E4E4")
             .setImage('attachment://welcome_image.png')
@@ -148,7 +148,7 @@ module.exports = {
             .setThumbnail(guild.iconURL({ dynamic: true }))
             .setTimestamp();
 
-        const channel = client.channels.cache.get('1237595873014452225');
+        const channel = client.channels.cache.get('1241878141421490198');
 
         // Verifica si el miembro no es un bot antes de enviar el mensaje
         if (!member.user.bot) {

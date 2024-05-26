@@ -24,7 +24,7 @@ module.exports = {
     },
     async handleModal(interaction) {
         const suggestionText = interaction.fields.getTextInputValue('suggestionInput');
-        const suggestionChannelId = '1239391350986637323'; // Reemplaza esto con el ID real del canal de sugerencias.
+        const suggestionChannelId = '1241878141870276623'; // Reemplaza esto con el ID real del canal de sugerencias.
 
         try {
             const suggestionChannel = await interaction.client.channels.fetch(suggestionChannelId);
@@ -45,8 +45,8 @@ module.exports = {
                 embeds: [suggestionEmbed]
             });
 
-            await suggestionMessage.react('<:checkmark:1239395180952551465>'); // Like
-            await suggestionMessage.react('<:xmark:1239395182177423371>'); // Unlike
+            await suggestionMessage.react('<:checkmark:1242669941438550026>'); // Like
+            await suggestionMessage.react('<:xmark:1242670083327791135>'); // Unlike
 
             const confirmationEmbed = new EmbedBuilder()
                 .setColor(0x00FF00)
